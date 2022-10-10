@@ -1,12 +1,15 @@
 ﻿using System;
+using HiLo.Game;
 
-namespace Unit02
+namespace HiLo
 {
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Director d = new Director();
+            d.StartGame();
+            return 0;
         }
     }
 }
