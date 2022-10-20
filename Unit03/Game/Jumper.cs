@@ -14,7 +14,7 @@ namespace Jumper
     public class Jumper
     {
         private List<string> _jumper = new List<string>();
-        private bool _isDead = false;
+        public bool _isDead = false;
 
         /// <summary>
         /// Constructs a new instance of jumper.
@@ -27,6 +27,7 @@ namespace Jumper
             _jumper.Add(@" \ / ");
             _jumper.Add(@"  O  ");
             _jumper.Add(@" /|\ ");
+            _jumper.Add(@"  | ");
             _jumper.Add(@" / \ ");
         }
 
@@ -34,27 +35,47 @@ namespace Jumper
         /// <summary>
         /// Displays the jumper
         /// </summary>
-        public void ShowJumper(List<string> list)
+        public string ShowJumper()
         {
-            TerminalService.DisplayJumper(list);
+            string stringJumper = String.Join("\n", _jumper);
+            return stringJumper;
         }
+        
         /// <summary>
-        /// Removes a section of the jumper's parachute
+        /// Removes a section of the jumper's parachute.
         /// </summary>
-        public void CutLine(List<string> list)
+        public void CutLine()
         {
             _jumper.RemoveAt(0);
         }
 
+        /// <summary>
+        /// Gets length of jumper.
+        /// </summary>
+        public int JumperLength()
+        {
+            return _jumper.Count;
+        }
 
         /// <summary>
         /// This changes the jumper to dead, indicating that the user is out of guesses and game is over.
         /// </summary>
-        public bool MakeDead(List<string> list)
+        public void MakeDead()
         {
             _jumper[0] = @"  X  ";
             _isDead = true;
-            return _isDead;
+        }
+
+        /// <summary>
+        /// This changes shows the winning jumper, indicating that the game is over.
+        /// </summary>
+        public void MakeWinner()
+        {
+            _jumper.Clear();
+            _jumper.Add(@"  O  ");
+            _jumper.Add(@" \|/ ");
+            _jumper.Add(@"  |  ");
+            _jumper.Add(@" / \ ");
         }
     }
 }

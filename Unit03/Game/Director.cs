@@ -1,3 +1,5 @@
+using System;
+
 namespace Jumper
 {
     /// <summary>
@@ -8,9 +10,13 @@ namespace Jumper
     /// </summary>
     public class Director
     {
-        private string guess;
+        private string _guess;
         private bool _isPlaying = true;
+        private bool _isFound;
         private TerminalService _terminalService = new TerminalService();
+        private Jumper _jumper = new Jumper();
+        private Word _word = new Word();
+
 
         /// <summary>
         /// Constructs a new instance of Director.
@@ -38,7 +44,14 @@ namespace Jumper
         /// </summary>
         private void GetInputs()
         {
-           guess = _terminalService.ReadText("Enter your guess");
+            _terminalService.WriteText(_word.GetHint());
+            Console.WriteLine();
+            _terminalService.WriteText(_jumper.ShowJumper());
+            Console.WriteLine();
+            _terminalService.WriteText("^^^^^^^");
+            _guess = _terminalService.ReadText("Guess a letter: ");
+            _guess = _guess.ToLower();
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -46,6 +59,20 @@ namespace Jumper
         /// </summary>
         private void DoUpdates()
         {
+            _isFound = _word.CheckGuess(_guess);
+            if (_isFound)
+            {
+                _word.RevealLetter(_guess);
+            }
+            else
+            {
+                _jumper.CutLine();
+            }
+            int length = _jumper.JumperLength();
+            if (length == 4)
+            {
+                _jumper.MakeDead();
+            }
         }
 
         /// <summary>
@@ -53,11 +80,24 @@ namespace Jumper
         /// </summary>
         private void DoOutputs()
         {
-            // if (_hider.IsFound())
-            // {
-            //     _isPlaying = false;
-            // }
+            if (_jumper._isDead)
+            {
+                _terminalService.WriteText(_jumper.ShowJumper());
+                _isPlaying = false;
+                Console.WriteLine();
+                Console.WriteLine("Sorry, you're out of guesses.");
+                Console.WriteLine();
 
+            }
+            bool winner = _word.Won();
+            if (winner)
+            {
+                _jumper.MakeWinner();
+                _terminalService.WriteText(_jumper.ShowJumper());
+                _isPlaying = false;
+                Console.WriteLine();
+                Console.WriteLine("Woohoo! You guessed the word!");
+            }
         }
     }
 }
