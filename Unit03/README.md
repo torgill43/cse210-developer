@@ -1,8 +1,5 @@
-# Seeker
-Experience the thrill of the chase! <i>Seeker</i> might seem easy but 
-even the best get lost from time to time. The rules are simple. The 
-seeker guesses the hider's location and the hider provides a hint - 
-that's confidence! Guessing continues until the hider is found.
+# Jumper
+Take your elementary schools days of hangman to the next level. Give your best shot at guessing the word. Don't take too long or your jumper will die. You have 4 guesses. 
 
 ---
 ## Getting Started
@@ -33,5 +30,4 @@ root                    (project root folder)
 * dotnet 6.0
 
 ## Authors
-* Matt Manley (manleym@byui.edu)
-* Scott Burton (burtons@byui.edu)
+* Tim Orgill

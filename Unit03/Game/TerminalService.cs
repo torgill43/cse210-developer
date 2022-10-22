@@ -32,31 +32,12 @@ namespace Jumper
         }
 
         /// <summary>
-        /// Displays the given string on the terminal. 
+        /// Displays the given text on the terminal. 
         /// </summary>
         /// <param name="text">The given text.</param>
         public void WriteText(string text)
         {
             Console.WriteLine(text);
         }
-
-        // /// <summary>
-        // /// Displays the given char on the terminal. 
-        // /// </summary>
-        // /// <param name="letter">The given char.</param>
-        // public void WriteChar(char letter)
-        // {
-        //     Console.WriteLine(letter);
-        // }
-
-        // /// <summary>
-        // /// Display the given list on the terminal.
-        // /// </summary>
-        // /// <param name="list">The given list.</param>
-        // public void DisplayJumper(List<string> list)
-        // {
-        //     string display = string.Join("\n", list);
-        //     Console.WriteLine(display);
-        // }
     }
 }
