@@ -15,6 +15,8 @@ namespace Unit04.Game.Directing
     {
         private KeyboardService _keyboardService = null;
         private VideoService _videoService = null;
+        private int _score;
+         private Point _lastInput = new Point(0,0);
 
         /// <summary>
         /// Constructs a new instance of Director using the given KeyboardService and VideoService.
@@ -51,7 +53,15 @@ namespace Unit04.Game.Directing
         {
             Actor robot = cast.GetFirstActor("robot");
             Point velocity = _keyboardService.GetDirection();
-            robot.SetVelocity(velocity);     
+            robot.SetVelocity(velocity);   
+
+            if((velocity.Equals(_lastInput) && !velocity.Equals(new Point(0,0)))) {
+                robot.SetVelocity(new Point(0,0));
+            }
+            else {
+                robot.SetVelocity(velocity);
+            }
+            _lastInput = velocity;
         }
 
         /// <summary>
@@ -62,20 +72,24 @@ namespace Unit04.Game.Directing
         {
             Actor banner = cast.GetFirstActor("banner");
             Actor robot = cast.GetFirstActor("robot");
-            List<Actor> artifacts = cast.GetActors("artifacts");
+            List<Actor> minerals = cast.GetActors("minerals");
 
-            banner.SetText("");
+            banner.SetText($"Score: {_score}");
             int maxX = _videoService.GetWidth();
             int maxY = _videoService.GetHeight();
             robot.MoveNext(maxX, maxY);
 
-            foreach (Actor actor in artifacts)
+
+            foreach (Actor actor in minerals)
             {
+                actor.MoveNext(maxX, maxY);
                 if (robot.GetPosition().Equals(actor.GetPosition()))
                 {
-                    Artifact artifact = (Artifact) actor;
-                    string message = artifact.GetMessage();
-                    banner.SetText(message);
+                    Mineral artifact = (Mineral) actor;
+                    int value = artifact.GetValue();
+                    _score += value;
+
+                    cast.RemoveActor("minerals", artifact);
                 }
             } 
         }
