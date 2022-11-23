@@ -22,47 +22,34 @@ namespace HiLo.Game
         {
             Random rnd = new Random();
             _cardValue = rnd.Next(1, 14);
-            // drawPile = new List<string>{
-            //     "1", "1", "1", "1",                
-            //     "2", "2", "2", "2",                
-            //     "3", "3", "3", "3",                
-            //     "4", "4", "4", "4",                
-            //     "5", "5", "5", "5",                
-            //     "6", "6", "6", "6",                
-            //     "7", "7", "7", "7",                
-            //     "8", "8", "8", "8",                
-            //     "9", "9", "9", "9",                
-            //     "10", "10", "10", "10",
-            //     "11", "11", "11", "11",
-            //     "12", "12", "12", "12",
-            //     "13", "13", "13", "13"
-            // };
-
-            // discardPile = new List<string>();
         }
 
-        // summary below turns into a help when hovered over when referenced
         /// <summary>
-
+        /// Determine whether this card is less than another card.
         /// </summary>
-
-        // public void Draw()
+        /// <param name="other"> A different card. </param>
+        /// <returns>True if this card is less than the other card. </returns>
+        // public bool isLessThan(Deck other)
         // {
-        //     Random rnd = new Random();
-        //     int _card = rnd.Next(1, 14);
-        //     // return _card;
+        //     return _cardValue < other._cardValue;
         // }
 
-        // public void Discard(string card){
+        /// <summary>
+        /// Determine whether this card is greater than another card.
+        /// </summary>
+        /// <param name="other"> A different card. </param>
+        /// <returns>True if this card is greater than the other card. </returns>
+        // public bool isGreaterThan(Deck other)
+        // {
+        //     return _cardValue > other._cardValue;
+        // }
 
-        // }  
-
-        // public void ReturnCard(string card){
+        // public string DisplayCard()
+        // {
+        //     Console.WriteLine($"The card is: {_cardValue}");
 
         // }
 
-        // public void Shuffle(){
 
-        // }
     }
 }
